@@ -1,15 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700,800');
+@import url('//fonts.googleapis.com/css?family=Nunito:400,600,700,800');
 
 :root {
   /* Colors */
-  --primary: color(primary);
-  --secondary: color(fontdark);
-  --success: color(success);
-  --info: color(info);
-  --warning: color(warning);
-  --danger: color(danger);
-  --light: color(light);
-  --dark: color(dark);
+  --primary:  #{color(primary)};
+  --secondary:  #{color(fontdark)};
+  --success:  #{color(success)};
+  --info:  #{color(info)};
+  --warning:  #{color(warning)};
+  --danger:  #{color(danger)};
+  --light:  #{color(light)};
+  --dark:  #{color(dark)};
+}
+
+body, html {
+  min-height: 100%;
 }
 
 body {
@@ -121,6 +125,10 @@ a.bb {
   font-size: 14px;
   color: color(fontdark);
   font-weight: 600;
+}
+
+.text-muted-transparent {
+  color: rgba(255,255,255,.8);
 }
 
 .img-shadow {
@@ -315,3 +323,103 @@ pre {
     width: 100%;
   }
 }
+
+.background-walk-y {
+  @include background_walk;
+  background-size: 100%;
+}
+
+@include media-breakpoint-down(lg) {
+  .background-walk-y {
+    background-size: cover;
+  }
+}
+
+.background-walk-x {
+  @include background_walk(backgroundWalkX);
+}
+
+@keyframes backgroundWalkY {
+  0% {
+    background-position: 0 0%;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+@keyframes backgroundWalkX {
+  0% {
+    background-position: 0 0%;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.overlay-gradient-bottom {
+  &:after {
+    @include overlay(1, false, linear-gradient(to bottom, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.65) 100%));
+  }
+}
+
+.overlay-gradient-top {
+  &:after {
+    @include overlay(1, false, linear-gradient(to top, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0.65) 100%));
+  }
+}
+
+.index-1 { z-index: 1 !important; }
+.index-2 { z-index: 2 !important; }
+.index-3 { z-index: 3 !important; }
+.index-4 { z-index: 4 !important; }
+.index-5 { z-index: 5 !important; }
+
+.absolute-bottom-left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.bg-paypal {
+  @include paypal;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-visa {
+  @include visa;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-americanexpress {
+  @include americanexpress;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-dinersclub {
+  @include dinersclub;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-discover {
+  @include discover;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-jcb {
+  @include jcb;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-mastercard {
+  @include mastercard;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+

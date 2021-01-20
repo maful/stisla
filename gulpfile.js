@@ -34,7 +34,7 @@ var cssDir = 'assets/css',
 
 function _compile_html(path, onEnd, log=true, ret=false) {
   if(log)
-    _log('[HTML] Compiling:' + path, 'GREEN');
+    _log('[HTML] Compiling: ' + path, 'GREEN');
 
   let compile_html = src(path, { base: htmlDir })
   .pipe(plumber())
@@ -125,23 +125,6 @@ function folder() {
   .pipe(dest('./assets/img'));
 }
 
-function minify(){
-  return src(sassDir)
-  .pipe(plumber())
-  .pipe(sass({
-    errorLogToConsole: true
-  }))
-  .on('error', console.error.bind( console ))
-  .pipe(rename({
-    suffix: '.min'
-  }))
-  .pipe(postcss([autoprefixer(), cssnano()]))
-  .pipe(dest(cssDir))
-  .pipe(notify({
-    message: 'Minify <%= file.relative %> berhasil bos'
-  }));
-}
-
 function image() {
   return src(imgDir + '/**/*.*')
   .pipe(plumber())
@@ -161,6 +144,9 @@ function compile_html() {
 }
 
 function watching() {
+  compile_scss();
+  compile_html();
+
   /**
    * BrowserSync initialization
    * @type {Object}
@@ -211,9 +197,6 @@ exports.folder = folder;
 
 // Minify images
 exports.image = image;
-
-// Run this command for styling OPs
-exports.minify = minify;
 
 // Compile SCSS
 exports.scss = compile_scss;
